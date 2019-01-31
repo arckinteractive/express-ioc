@@ -1,5 +1,5 @@
 {
-  "name": "express-ioc",
+  "name": "@arckinteractive/express-ioc",
   "version": "1.0.0",
   "description": "IoC Container for Express",
   "main": "src/index.js",

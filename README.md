@@ -12,14 +12,27 @@ https://medium.com/@ismayilkhayredinov/building-a-scoped-ioc-container-for-node-
 You can construct a new container from an array of service definitions:
 
 ```js
-import { Container } from 'express-ioc';
+import { Container } from '@arckinteractive/express-ioc';
 
-// Create a container from an array of service definitions
 const definitions = [
     {
         name: 'serviceA',
-        factory: () => 'FOO',
+        factory: () => {
+            return {
+                foo: process.env.FOO,
+            }
+        },
     },
+    {
+        name: 'serviceF',
+        factory: (serviceA) => {
+            return `I am not a ${serviceA.foo}`;
+        },
+        dependencies: ['serviceA'],
+        options: {
+            scoped: true,
+        }
+    }
 ];
 
 const services = Container.create(definitions);
@@ -28,27 +41,31 @@ const services = Container.create(definitions);
 Each definition has a `name`, `factory`, `dependencies` and `options`.
 
 A factory is function/constructor that will receive dependencies as arguments.
+You can register new services at runtime, after container has been created.
 
 ```js
-// Register new services at runtime
-
 // Service factory as a class name
 class ServiceBConstructor {
-    constructor (depA) {
+    constructor (serviceA) {
+        this.serviceA = service;
+    }
+    
+    doStuff() {
         
     }
 }
-services.register('serviceB', ServiceBConstructor, ['serviceA']);
 
 // Service as a plain object
-const config = {};
-services.register('serviceC', () => config);
+const serviceC = {};
 
 // Scoped service (bound to a specific express request, e.g. session)
-const scoped = (depA) => {
+const serviceD = (serviceA) => {
     return {};
 };
-services.register('serviceD', scoped, ['serviceA'], { scoped: true });
+
+services.register('serviceB', ServiceBConstructor, ['serviceA']);
+services.register('serviceC', () => serviceC);
+services.register('serviceD', serviceD, ['serviceA', 'serviceC'], { scoped: true });
 ```
 
 Once you access a service by its name, it's turned into a singleton, and you get the same instance of the service on consecutive calls:
