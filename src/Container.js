@@ -17,7 +17,7 @@ export default class Container {
                 return instance[property];
             },
         };
-    };
+    }
 
     static create (definitions = [], namespace) {
         namespace = namespace || createNamespace(uuid4());
