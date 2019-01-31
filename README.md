@@ -96,7 +96,7 @@ export default (req, res, next) => {
 
 ```js
 // your app booting module
-import Container from 'express-ioc';
+import Container from '@arckinteractive/express-ioc';
 import middleware from './some-external-module';
 
 const services = Container.create();
