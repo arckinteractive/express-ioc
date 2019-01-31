@@ -1,0 +1,47 @@
+{
+  "name": "express-ioc",
+  "version": "1.0.0",
+  "description": "IoC Container for Express",
+  "main": "src/index.js",
+  "repository": "https://github.com/arckinteractive/express-ioc",
+  "author": "ArckInteractive",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint ./src",
+    "test": "nyc mocha ./tests/ --recursive --require @babel/polyfill --require @babel/register"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
+    "chai": "^4.2.0",
+    "eslint": "^5.12.1",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "supertest": "^3.4.2"
+  },
+  "dependencies": {
+    "cls-hooked": "^4.2.2",
+    "express": "^4.16.4",
+    "uuid": "^3.3.2"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": true,
+    "lines": 0,
+    "statements": 0,
+    "functions": 0,
+    "branches": 0,
+    "include": [
+      "src/**/*.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "cache": true,
+    "all": true,
+    "report-dir": "./coverage"
+  }
+}
