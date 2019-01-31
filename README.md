@@ -6,6 +6,11 @@ A very simple IoC container for Node/Express.
 Principles used for this container are outline in this medium article:
 https://medium.com/@ismayilkhayredinov/building-a-scoped-ioc-container-for-node-express-8bf082d9887
 
+## Installation
+
+```sh
+yarn add @arckinteractive/express-ioc
+```
 
 ## Usage
 
