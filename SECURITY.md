@@ -1,6 +1,6 @@
 # Security Policy
 
-# Reporting a Bug
+## Reporting a Bug
 
 The Arck Interactive team takes all security bugs in our projects seriously, but as a
 full-time development agency, we don't always have the time to address isues promptly.
